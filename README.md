@@ -44,5 +44,3 @@ Building for deployment will fail if one or more unit test fails.
 
 ### Documentation
 * [Development Guidelines](DevGuide/README.md)
-
-test
