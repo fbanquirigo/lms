@@ -1,0 +1,21 @@
+﻿<nav class="navbar navbar-default fixed-position-nav" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <span class="navbar-brand">@ResourceString("System.Name")</span>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="dropdown" ng-repeat="menu in menus">
+                <a ng-if="!menu.SubMenus" href="javascript:void(0);" ng-click="menuClick(menu)"><span ng-bind="menu.Text"></span></a>
+                <a ng-if="menu.SubMenus" href="javascript:void(0);" ng-click="menuClick(menu)" class="dropdown-toggle" data-toggle="dropdown">
+                    <span ng-bind="menu.Text"></span>
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="submenu in menu.SubMenus">
+                        <a href="javascript:void(0);" ng-click="menuClick(submenu)"><span ng-bind="submenu.Text"></span></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>  

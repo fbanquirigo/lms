@@ -1,0 +1,35 @@
+@using System.Web.Http.Controllers
+@using System.Web.Http.Description
+@using System.Collections.ObjectModel
+@model Collection<ApiDescription>
+
+@{
+    ViewBag.Title = "Sargent and Greenleaf Lock Management API"; 
+    ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = 
+        Model.OrderBy(d => d.ActionDescriptor.ControllerDescriptor.ControllerName)
+        .ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
+}             
+
+@Html.Partial("_Header")
+<div id="body" class="help-page container">
+    <section class="featured">
+        <div class="content-wrapper">
+            <h2>Sargent and Greenleaf Lock Management API</h2>
+            <p>
+                Donec orci lacus, tincidunt id tortor at, tincidunt viverra diam. Ut varius, sapien eu interdum mattis, urna nunc venenatis erat, sit amet dictum enim turpis in dolor. Praesent in commodo libero. Nunc tincidunt faucibus magna eu ornare. Donec dapibus sed arcu nec suscipit. Morbi euismod risus felis, nec volutpat tellus mattis vitae. Nullam in purus nunc. Donec accumsan fringilla sem, sit amet ultricies diam posuere eget. Maecenas leo ante, convallis sit amet condimentum vel, euismod eget arcu. Duis laoreet consequat metus vel posuere.
+            </p>
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        @foreach (var group in apiGroups)
+        {
+            @Html.DisplayFor(m => group, "ApiGroup")
+        }
+    </section>
+</div>        
+    
+    
+@section footer
+{
+    @Html.Partial("_Footer")
+}

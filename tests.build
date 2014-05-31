@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TestsOutputDir>TestsOutput</TestsOutputDir>
+    <NUnitTestResult>unit-tests-result.xml</NUnitTestResult>
+    <NUnitToolPath>NUnit</NUnitToolPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(ContinueOnError)' == '' ">
+    <ContinueOnError>true</ContinueOnError>
+  </PropertyGroup>
+
+  <Target Name="RunTests">
+    <CreateItem Include="$(TestsOutputDir)\*.Tests.dll">
+      <Output TaskParameter="Include" ItemName="TestAssembly" />
+    </CreateItem>
+    <NUnit Assemblies="@(TestAssembly)" ToolPath="$(NUnitToolPath)"
+        OutputXmlFile="$(NUnitTestResult)" ContinueOnError="$(ContinueOnError)" />
+  </Target>
+  
+</Project>

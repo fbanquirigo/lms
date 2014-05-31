@@ -1,0 +1,31 @@
+﻿<?xml version="1.0"?>
+<MethodsConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <MethodListTitle>AVAILABLE C SERIES COMMANDS</MethodListTitle>
+  <Methods>
+    <Method>
+      <Title>Open Lock (C)</Title>
+      <Form>OpenLockC</Form>
+      <Description>This command generates an operation code to open the lock using the inputs ATM ID, MIDDLE NAME, TOUCH KEY ID, DATE, HOUR, TIME BLOCK and LOCK STATUS.</Description>
+    </Method>
+    <Method>
+      <Title>Open Lock No Touch Key (C)</Title>
+      <Form>OpenLockNoTouchKeyC</Form>
+      <Description>This command generates an operation code to open the lock using the inputs ATM ID, MIDDLE NAME, TIME, DATE and TIME BLOCK.</Description>
+    </Method>
+    <Method>
+      <Title>Open Lock Now (1C)</Title>
+      <Form>OpenLockNow1C</Form>
+      <Description>This command generates an operation code to open the lock using the inputs ATM ID and MIDDLE NAME.</Description>
+    </Method>
+    <Method>
+      <Title>Close Code (C)</Title>
+      <Form>CloseCodeC</Form>
+      <Description>This command will close an active operation code that matches the input ATM ID, OPERATOR CODE and OPERATION RESULT.</Description>
+    </Method>
+    <Method>
+      <Title>Close Code Via A Seal (C)</Title>
+      <Form>CloseCodeViaASealC</Form>
+      <Description>This command will close an operation code using the C Seal value.</Description>
+    </Method>
+  </Methods>
+</MethodsConfiguration>

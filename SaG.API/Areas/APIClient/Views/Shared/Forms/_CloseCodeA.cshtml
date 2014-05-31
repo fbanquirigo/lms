@@ -1,0 +1,50 @@
+﻿@using SaG.API.Areas.APIClient.Models
+@Html.Partial("_Breadcrumb", new BackLink { BackForm = "methodlist/a", BackFormLabel = "A Series Commands", CurrentFormLabel = "Close Code (A)" })
+<div ng-controller="closeCodeA">
+    <div class="page-header">
+        <h3>Close Code (A)</h3> 
+        <p>Closes an active operation code that matches the input ATM ID, operator code and operation result.</p>
+    </div>             
+    <div class="alert alert-danger alert-dismissable" ng-if="codeClosed === false">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>  
+        <strong>Close Code Failed</strong>
+    </div>         
+    <div class="alert alert-success alert-dismissable" ng-if="codeClosed === true">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>  
+        <strong>Close Code Succeed</strong>
+    </div> 
+    <div class="row"> 
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="txtAtmId">ATM ID</label>
+                <input type="text" class="form-control" id="txtAtmId" placeholder="Enter ATM ID" ng-model="request.AtmId">
+            </div>
+            <div class="form-group">
+                <label for="txtOperationCode">Operation Code</label>
+                <input type="text" class="form-control" id="txtOperationCode" placeholder="Enter Operation Code" ng-model="request.OperationCode">
+            </div>      
+            <div class="form-group">
+                <label for="cboOperationResult">Operation Result</label>
+                <select class="form-control" id="cboOperationResult" ng-model="request.OperationResult">
+                    <option>0</option>
+                    <option>F</option>
+                    <option>Z</option>
+                </select>
+            </div>  
+            <div class="form-group">
+                <button class="btn btn-primary" ng-click="execute(beforeMethodExecute, methodExecuteSuccess, methodExecuteError)">Execute</button>
+                <div id="loader" style="display: none;">
+                    <img src="/Content/images/loader.gif" />    
+                </div> 
+            </div> 
+        </div>
+        <div class="col-md-3 col-md-offset-1">
+            <div class="form-group">
+                <label for="txtResult">MESSAGE</label>
+                <textarea class="form-control text-result" id="txtResult" ng-model="message" readonly></textarea>
+            </div>
+        </div>  
+    </div>
+    @Html.Partial("_RequestDebugForm")
+</div>
+

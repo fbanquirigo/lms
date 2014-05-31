@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="BuildAndPackage" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)\.build</MSBuildCommunityTasksPath>
+    <DocumentationFile>$(MSBuildProjectDirectory)\SaG.API\App_Data\SaG.API.xml</DocumentationFile>
+    <OutputDir>..\Release</OutputDir>
+    <AssembliesDirectory>Assemblies</AssembliesDirectory>
+    <ReleaseDirectory>Release</ReleaseDirectory>
+    <PublishProfile>..\Release-Package.pubxml</PublishProfile>
+    <PublishedBinDirectory>$(ReleaseDirectory)\_PublishedWebsites\SaG.API\bin</PublishedBinDirectory>
+    <PackageDir>pub</PackageDir>
+    <AppDataDirectory>SaG.API\App_Data</AppDataDirectory>
+    <PackageDirAppDataDirectory>$(PackageDir)\App_Data</PackageDirAppDataDirectory>
+    <PackageDirBinDirectory>$(PackageDir)\bin</PackageDirBinDirectory>
+    <ContinueOnError>false</ContinueOnError>
+    <Today>$([System.DateTime]::Now.ToString("yyyyMMdd"))</Today>
+  </PropertyGroup>
+
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.targets"/>
+  <Import Project="$(MSBuildProjectDirectory)\version.build"/>
+  <Import Project="$(MSBuildProjectDirectory)\tests.build"/>
+
+  <!-- Version Number -->
+  <PropertyGroup Condition=" '$(BUILD_NUMBER)' == '' ">
+    <Version>$(CurrentVersion)</Version>
+    <FileVersion>$(CurrentVersion)</FileVersion>
+    <InformationalVersion>$(CurrentVersion)</InformationalVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(BUILD_NUMBER)' != '' ">
+    <!-- Build Server Number -->
+    <Version>$(BUILD_NUMBER)</Version>
+    <FileVersion>$(BUILD_NUMBER)</FileVersion>
+    <InformationalVersion>$(BUILD_NUMBER)</InformationalVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(BuildConfiguration)' == '' ">
+    <BuildConfiguration>Release</BuildConfiguration>
+  </PropertyGroup>
+
+  <!-- Zip Filename -->
+  <PropertyGroup Condition=" '$(Platform)' == '' ">
+    <ZipFileName>$(Version)-$(Today).zip </ZipFileName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <ZipFileName>$(Version)(x86)-$(Today).zip </ZipFileName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x64' ">
+    <ZipFileName>$(Version)(x64)-$(Today).zip </ZipFileName>
+  </PropertyGroup>
+
+  <Target Name="Clean">
+    <DeleteTree Directories="**\obj\**;**\bin\**;" />
+  </Target>
+
+  <Target Name="Version">
+    <Time Format="yyyyMMdd">
+      <Output TaskParameter="Year" PropertyName="Year" />
+      <Output TaskParameter="Month" PropertyName="Month" />
+      <Output TaskParameter="Day" PropertyName="Day" />
+    </Time>
+    <Message Text="Version: $(Version)"/>
+    <Attrib Files="$(MSBuildProjectDirectory)\Common.AssemblyInfo.cs" ReadOnly="False" />
+    <AssemblyInfo CodeLanguage="CS"
+                  OutputFile="$(MSBuildProjectDirectory)\Common.AssemblyInfo.cs"
+                  GenerateClass="true"
+                  AssemblyCompany="Sargent and Greenleaf"
+                  AssemblyProduct="Sargent and Greenleaf Lock Management API"
+                  AssemblyCopyright="Copyright © $(Year). All rights reserved."
+                  AssemblyVersion="$(Version)"
+                  AssemblyFileVersion="$(FileVersion)"
+                  AssemblyInformationalVersion="$(InformationalVersion)" />
+  </Target>
+
+  <ItemGroup>
+    <ProjectFiles Include="$(MSBuildProjectDirectory)\SaG.API.sln">
+      <Properties>OutputPath=$(OutputDir);Configuration=$(BuildConfiguration);DeployOnBuild=true;PublishProfile=$(PublishProfile);</Properties>
+    </ProjectFiles>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectToTest Include="$(MSBuildProjectDirectory)\SaG.API.sln">
+      <Properties>Configuration=$(BuildConfiguration);</Properties>
+    </ProjectToTest>
+  </ItemGroup>
+
+   <ItemGroup>
+    <ProjectToDocument Include="$(MSBuildProjectDirectory)\SaG.API\SaG.API.csproj">
+      <Properties>Configuration=$(BuildConfiguration);DocumentationFile=$(DocumentationFile);</Properties>
+    </ProjectToDocument>
+  </ItemGroup>
+
+  <ItemGroup>
+    <TempDirs Include="$(PackageDir)" />
+    <TempDirs Include="$(ReleaseDirectory)" />
+  </ItemGroup>
+
+  <Target Name="Compile" DependsOnTargets="Clean;Version">
+    <MSBuild Projects="@(ProjectFiles)" />
+  </Target>
+
+  <Target Name="CompileTests">
+    <MSBuild Projects="@(ProjectToTest)" />
+  </Target>
+
+  <Target Name="GenerateDocumentation">
+    <MSBuild Projects="@(ProjectToDocument)" />
+  </Target>
+
+  <Target Name="Package">
+    <CreateItem Include="$(PackageDir)\**" >
+      <Output ItemName="ZipFiles" TaskParameter="Include"/>
+    </CreateItem>
+    <Zip ZipFileName="$(ZipFileName)" WorkingDirectory="$(MSBuildProjectDirectory)" Files="@(ZipFiles)" />
+  </Target>
+
+  <Target Name="DeleteTemporaryFiles">
+    <RemoveDir Directories="@(TempDirs)" />
+  </Target>
+
+  <Target Name="BuildAndPackage">
+    <Message Text="Building SaG.API."></Message>
+    <CallTarget Targets="CompileTests" />
+    <Message Text="Generate Documentation"></Message>
+    <CallTarget Targets="GenerateDocumentation" />
+    <Message Text="Running Unit Tests."></Message>
+    <CallTarget Targets="RunTests" />
+    <Message Text="Creating Deployment Package"></Message>
+    <CallTarget Targets="Compile" />
+    <Exec Command="mkdir $(PackageDirAppDataDirectory)" />
+    <Exec Command="copy /Y $(AppDataDirectory)\SaG.API.xml $(PackageDirAppDataDirectory)\" />
+    <Exec Command="xcopy.exe /s /Y $(AssembliesDirectory)\*.* $(ReleaseDirectory)" />
+    <Exec Command="xcopy.exe /s /Y $(AssembliesDirectory)\*.* $(PublishedBinDirectory)" />
+    <Exec Command="xcopy.exe /s /Y $(AssembliesDirectory)\*.* $(PackageDirBinDirectory)" />
+    <CallTarget Targets="Package" />
+    <CallTarget Targets="DeleteTemporaryFiles" />
+  </Target>
+
+  <Target Name="BuildAndRunTests">
+    <Message Text="Building SaG.API."></Message>
+    <CallTarget Targets="CompileTests" />
+    <Message Text="Running Unit Tests."></Message>
+    <CallTarget Targets="RunTests" />
+  </Target>
+
+</Project>

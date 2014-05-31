@@ -1,0 +1,14 @@
+﻿@model SaG.API.Areas.APIClient.Models.MethodList
+
+<div class="page-header">
+    <h2>@Model.MethodListTitle</h2>
+</div>
+<div class="col-md-8 commands-lms">
+    @foreach (var method in Model.Methods)
+    {
+        <h3><a href="javascript:void(0)" ng-click="showFormInDashboard('@method.Form')">@method.Title</a></h3>
+        <p>@method.Description</p>    
+    }
+</div>
+
+

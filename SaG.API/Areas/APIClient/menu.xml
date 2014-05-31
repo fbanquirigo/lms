@@ -1,0 +1,20 @@
+﻿<?xml version="1.0"?>
+<MenuConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Menus>
+    <MenuItem>
+      <Text>A Series</Text>
+      <Form>methodlist/a</Form>
+      <Location>dashboard</Location>
+    </MenuItem>
+    <MenuItem>
+      <Text>B Series</Text>
+      <Form>methodlist/b</Form>
+      <Location>dashboard</Location>
+    </MenuItem>
+    <MenuItem>
+      <Text>C Series</Text>
+      <Form>methodlist/c</Form>
+      <Location>dashboard</Location>
+    </MenuItem>
+  </Menus>
+</MenuConfiguration>

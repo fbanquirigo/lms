@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaGEncrypt", "SaGEncrypt\SaGEncrypt.csproj", "{13C6CBE7-D55E-4127-ACD9-A4EDF11947BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaGEncryptCOM", "SaGEncryptCOM\SaGEncryptCOM.csproj", "{B69168FE-855A-414D-B6D3-7E5E16078463}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{13C6CBE7-D55E-4127-ACD9-A4EDF11947BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13C6CBE7-D55E-4127-ACD9-A4EDF11947BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13C6CBE7-D55E-4127-ACD9-A4EDF11947BF}.Debug|x86.ActiveCfg = Debug|x86
+		{13C6CBE7-D55E-4127-ACD9-A4EDF11947BF}.Debug|x86.Build.0 = Debug|x86
+		{13C6CBE7-D55E-4127-ACD9-A4EDF11947BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13C6CBE7-D55E-4127-ACD9-A4EDF11947BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13C6CBE7-D55E-4127-ACD9-A4EDF11947BF}.Release|x86.ActiveCfg = Release|x86
+		{13C6CBE7-D55E-4127-ACD9-A4EDF11947BF}.Release|x86.Build.0 = Release|x86
+		{B69168FE-855A-414D-B6D3-7E5E16078463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B69168FE-855A-414D-B6D3-7E5E16078463}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B69168FE-855A-414D-B6D3-7E5E16078463}.Debug|x86.ActiveCfg = Debug|x86
+		{B69168FE-855A-414D-B6D3-7E5E16078463}.Debug|x86.Build.0 = Debug|x86
+		{B69168FE-855A-414D-B6D3-7E5E16078463}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B69168FE-855A-414D-B6D3-7E5E16078463}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B69168FE-855A-414D-B6D3-7E5E16078463}.Release|x86.ActiveCfg = Release|x86
+		{B69168FE-855A-414D-B6D3-7E5E16078463}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

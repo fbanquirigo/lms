@@ -1,0 +1,23 @@
+@using SaG.API.Areas.HelpPage.ModelDescriptions
+@model ModelDescription
+
+
+@Html.Partial("_Header")
+<div class="help-page container">
+    <ol class="breadcrumb breadcrumb-methods">
+        <li>@Html.ActionLink("Help", "Index")</li>
+        <li class="active">@Model.Name</li>
+    </ol> 
+    <div class="page-header">
+        <h3>@Model.Name</h3>  
+        <p>@Model.Documentation</p>
+    </div>  
+    <section class="content-wrapper main-content clear-fix">
+        @Html.DisplayFor(m => Model)
+    </section>
+</div>
+               
+@section footer
+{
+    @Html.Partial("_Footer")
+}

@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4A500D12-52FF-485E-A692-117E7A6D90CA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SaG.Data.Migrations</RootNamespace>
+    <AssemblyName>SaG.Data.Migrations</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentMigrator">
+      <HintPath>..\packages\FluentMigrator.1.1.2.1\lib\40\FluentMigrator.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentMigrator.Runner">
+      <HintPath>..\packages\FluentMigrator.Tools.1.1.2.1\tools\AnyCPU\40\FluentMigrator.Runner.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Common.AssemblyInfo.cs">
+      <Link>Properties\Common.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="BaseMigration.cs" />
+    <Compile Include="DbMigrator.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="IDbMigrator.cs" />
+    <Compile Include="IMigrationLogger.cs" />
+    <Compile Include="IProductVersion.cs" />
+    <Compile Include="MigrationConfig.cs" />
+    <Compile Include="MigrationDependencyConfig.cs" />
+    <Compile Include="MigrationLogger.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TableManager.cs" />
+    <Compile Include="Version-1.0.0.0\100001-CreateProductVersionTable.cs" />
+    <Compile Include="Version-1.0.0.0\100002-CreateElmahTables.cs" />
+    <Compile Include="Version-1.0.0.0\Version1000.cs" />
+    <Compile Include="Version-1.0.0.1\100101-VersionInit.cs" />
+    <Compile Include="Version-1.0.0.1\100102-CreateAPIClientsTable.cs" />
+    <Compile Include="Version-1.0.0.1\100103-CreateAPIAuthCodesTable.cs" />
+    <Compile Include="Version-1.0.0.1\100104-CreateAPIAccessTokensTable.cs" />
+    <Compile Include="Version-1.0.0.1\100105-AddKeyToTables.cs" />
+    <Compile Include="Version-1.0.0.1\100106-AddAuditColumnsToTables.cs" />
+    <Compile Include="Version-1.0.0.1\100107-CreateErrorLogsTable.cs" />
+    <Compile Include="Version-1.0.0.1\100108-AddAPITimezoneColumnToSystemTable.cs" />
+    <Compile Include="Version-1.0.0.1\Version1001.cs" />
+    <Compile Include="Version-1.0.0.2\100202-AddSystemSettingsLocationId.cs" />
+    <Compile Include="Version-1.0.0.2\100203-AddClientAndOperatorToAuditTrail.cs" />
+    <Compile Include="Version-1.0.0.2\Version1002.cs" />
+    <Compile Include="Version-1.0.0.2\100201-VersionInit.cs" />
+    <Compile Include="Version-1.0.0.3\100301-VersionInit.cs" />
+    <Compile Include="Version-1.0.0.3\Version1003.cs" />
+    <Compile Include="Version-1.0.1.0\Version1010.cs" />
+    <Compile Include="Version-1.0.1.0\101001-VersionInit.cs" />
+    <Compile Include="VersionInitializer.cs" />
+    <Compile Include="VersionTableMetaData.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SaG.Core.Log4Net\SaG.Core.Log4Net.csproj">
+      <Project>{11bf7f2d-17e1-4627-b825-bec9a6c07231}</Project>
+      <Name>SaG.Core.Log4Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaG.Core\SaG.Core.csproj">
+      <Project>{97a870fe-a821-4897-9b47-510e419a4478}</Project>
+      <Name>SaG.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaG.Data\SaG.Data.csproj">
+      <Project>{46967301-3a17-418c-8fd4-7afad4eff972}</Project>
+      <Name>SaG.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Version-1.0.0.0\Scripts\Elmah.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Version-1.0.0.0\Scripts\Drop-Elmah.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

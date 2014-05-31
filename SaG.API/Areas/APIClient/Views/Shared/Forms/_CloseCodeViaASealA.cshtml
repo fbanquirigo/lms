@@ -1,0 +1,46 @@
+﻿@using SaG.API.Areas.APIClient.Models
+@Html.Partial("_Breadcrumb", new BackLink { BackForm = "methodlist/a", BackFormLabel = "A Series Commands", CurrentFormLabel = "Close Code Via A Seal (A)" })
+<div ng-controller="closeCodeViaSealA">
+    <div class="page-header">
+        <h3>Close Code Via A Seal (A)</h3>   
+        <p>Closes an active operation code using the A Seal value A.</p>
+    </div>    
+    <div class="alert alert-danger alert-dismissable" ng-if="codeClosed === false">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>  
+        <strong>Close Code Failed</strong>
+    </div>         
+    <div class="alert alert-success alert-dismissable" ng-if="codeClosed === true">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>  
+        <strong>Close Code Succeed</strong>
+    </div> 
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="txtUserId">User ID</label>
+                <input type="text" class="form-control" id="txtUserId" placeholder="Enter User ID" ng-model="request.UserId">
+            </div>
+            <div class="form-group">
+                <label for="txtOperationCode">Operation Result</label>
+                <input type="text" class="form-control" id="txtOperationResult" placeholder="Enter Operator Result" ng-model="request.OperationResult">
+            </div>
+            @*<div class="form-group">
+                <label for="txtSeal">A Seal Value</label>
+                <input type="text" class="form-control" id="txtSeal" placeholder="Enter A Seal Value" ng-model="request.Seal">
+            </div>*@            
+            <div class="form-group">
+                <button class="btn btn-primary" ng-click="execute(beforeMethodExecute, methodExecuteSuccess, methodExecuteError)">Execute</button>
+                <div id="loader" style="display: none;">
+                    <img src="/Content/images/loader.gif" />    
+                </div> 
+            </div> 
+        </div>
+        <div class="col-md-3 col-md-offset-1">
+            <div class="form-group">
+                <label for="txtResult">MESSAGE</label>
+                <textarea class="form-control text-result" id="txtResult" ng-model="message" readonly></textarea>
+            </div>
+        </div>      
+    </div> 
+    @Html.Partial("_RequestDebugForm")
+</div>
+

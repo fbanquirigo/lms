@@ -1,0 +1,1 @@
+xcopy /s /Y Assemblies SaG.API\bin\

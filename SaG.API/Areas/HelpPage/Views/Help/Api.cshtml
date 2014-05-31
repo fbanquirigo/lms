@@ -1,0 +1,22 @@
+@using SaG.API.Areas.HelpPage.Models
+@model HelpPageApiModel
+
+@{
+    var description = Model.ApiDescription;
+    ViewBag.Title = description.HttpMethod.Method + " " + description.RelativePath;
+}   
+       
+@Html.Partial("_Header")    
+
+<div class="help-page container">    
+    <ol class="breadcrumb breadcrumb-methods">
+        <li>@Html.ActionLink("Help", "Index")</li>
+        <li class="active">@Model.ApiDescription.HttpMethod.Method @Model.ApiDescription.RelativePath</li>
+    </ol> 
+    @Html.DisplayForModel()
+</div>     
+
+@section footer
+{
+    @Html.Partial("_Footer")
+}

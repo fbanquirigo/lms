@@ -1,0 +1,58 @@
+﻿@model SaG.API.Models.OAuthLoginClient
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "S&G - SSO Login";
+} 
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jquery.validate")    
+}      
+
+@section footer
+{
+    @Html.Partial("_Footer")
+} 
+
+@Html.Partial("_Header")
+<div class="container container-body">
+    <div class="row">
+        <div class="oauth-login-alert">  
+            @if (TempData["ErrorString"] != null)
+            {    
+                <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>  
+                    <strong>@ResourceString(TempData["ErrorString"].ToString())</strong>
+                </div> 
+            }   
+        </div>     
+        @using(Html.BeginForm("Authenticate", "Login", FormMethod.Post)) { 
+            <div class="panel panel-default oauth-login-panel">
+                @Html.AntiForgeryToken()
+                <div class="panel-heading">
+                    <h3 class="panel-title">@ResourceString("OperatorLogin.Text")</h3>
+                </div> 
+                <div class="panel-body">
+                    <div class="left-inner-addon">
+                        <i class="glyphicon glyphicon-user"></i> 
+                        @Html.TextBoxFor(x => x.Username, new { @class = "form-control", @placeholder = ResourceString("Username.Text"), @autofocus = "autofocus" })   
+                        <span class="field-error-msg">
+                            @Html.ValidationMessageFor(x => x.Username, ResourceString("Login.EnterUsername"))  
+                        </span>
+                    </div>  
+                    <div class="left-inner-addon">
+                        <i class="glyphicon glyphicon-lock"></i>   
+                        @Html.PasswordFor(x => x.Password, new { @class = "form-control", @placeholder = ResourceString("Password.Text") }) 
+                        <span class="field-error-msg">
+                            @Html.ValidationMessageFor(x => x.Password, ResourceString("Login.EnterPassword"))
+                        </span>
+                    </div>   
+                    @Html.HiddenFor(x => x.CallbackUri)
+                    @Html.HiddenFor(x => x.State)
+                    @Html.HiddenFor(x => x.ClientId)   
+                    <input type="submit" value="@ResourceString("Login.Text")" class="btn btn-primary form-control btn-block"/>
+                </div>
+            </div>
+        } 
+    </div>
+</div>

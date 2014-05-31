@@ -1,0 +1,15 @@
+﻿<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">@ResourceString("System.Name")</a>
+        </div> 
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink(ResourceString("Management.Link.Text"), "Index", "Home", new { Area = "Management" }, new{})
+            </li> 
+            <li>
+                <a href="/help">@ResourceString("Help.Link.Text")</a>
+            </li>
+        </ul>    
+    </div>    
+</nav>  

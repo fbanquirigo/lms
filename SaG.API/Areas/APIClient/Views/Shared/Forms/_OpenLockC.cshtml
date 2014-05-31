@@ -1,0 +1,74 @@
+﻿@using SaG.API.Areas.APIClient.Models   
+@Html.Partial("_Breadcrumb", new BackLink { BackForm = "methodlist/c", BackFormLabel = "C Series Commands", CurrentFormLabel = "Open Lock (C)" })
+<div ng-controller="openLockC" ng-init="init(initControls)">
+    <div class="page-header">
+        <h3>Open Lock (C)</h3>  
+        <p>
+            Generates an operation code to open the lock using the inputs – ATM ID, middle name, touch key ID, date, hour, time block and lock status.
+        </p>
+    </div>   
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="txtAtmId">ATM ID</label>
+                <input type="text" class="form-control" id="txtAtmId" placeholder="Enter ATM ID" ng-model="request.AtmId">
+            </div>
+            <div class="form-group">
+                <label for="txtMiddleName">Middle Name</label>
+                <input type="text" class="form-control" id="txtMiddleName" placeholder="Enter Middle Name" ng-model="request.MiddleName">
+            </div>
+            <div class="form-group">
+                <label for="txtTouchKeyId">Touch Key ID</label>
+                <input type="text" class="form-control" id="txtTouchKeyId" placeholder="Enter Touch Key ID" ng-model="request.TouchKeyId">
+            </div> 
+            <div class="form-group">
+                <label for="txtDate">Date</label>
+                <input type="text" class="form-control datepicker" id="txtDate" data-date-format="dd/mm/yyyy" placeholder="Select date" ng-model="request.Date">
+            </div>        
+            <div class="form-group">
+                <label for="cboHour">Start Time</label>    
+                <select class="form-control" id="cboHour" ng-model="request.Hour">
+                    @for (var i = 0; i < 24; i++)
+                    {
+                        <option>@i</option>    
+                    }
+                </select>
+            </div>   
+            <div class="form-group">
+                <label for="cboTimeBlock">Time Block</label>
+                <select class="form-control" id="cboTimeBlock" ng-model="request.TimeBlock">
+                    <option>4</option>
+                    <option>8</option>
+                    <option>12</option>
+                    <option>24</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cboLockStatus">Lock Status</label>
+                <select class="form-control" id="cboLockStatus" ng-model="request.LockStatus">
+                    @for (var i = 0; i < 10; i++)
+                    {
+                        <option>@i</option>    
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <button id="btnExecute" class="btn btn-primary" ng-click="execute(beforeMethodExecute, methodExecuteSuccess, methodExecuteError)">Execute</button>    
+                <div id="loader" style="display: none;">
+                    <img src="/Content/images/loader.gif" />    
+                </div>  
+            </div> 
+        </div>
+        <div class="col-md-3 col-md-offset-1">
+            <div class="form-group">
+                <label for="txtResult">MESSAGE</label>
+                <textarea class="form-control text-result" id="txtResult" ng-model="message" readonly></textarea>
+            </div>
+            <div class="form-group">
+                <label for="txtOperationCode">OPERATION CODE</label>     
+                <input type="text" class="form-control text-op-code" id="txtOperationCode" readonly ng-model="operationCode">
+            </div>
+        </div> 
+    </div>
+    @Html.Partial("_RequestDebugForm")
+</div>  

@@ -1,0 +1,9 @@
+﻿@if ((bool) (TempData["Debug"] ?? false))
+{
+    <div class="row"> 
+        <hr />
+        <div class="col-md-6">
+            <requestcontrol title="Open Lock A" method="getMethod()" request="toJson(request)" url="getUri()" response="toJson(response)" headers="toJson(getHeaders())"></requestcontrol>    
+        </div> 
+    </div>    
+}

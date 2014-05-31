@@ -1,0 +1,31 @@
+﻿<?xml version="1.0"?>
+<MethodsConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <MethodListTitle>AVAILABLE B SERIES COMMANDS</MethodListTitle>
+  <Methods>
+    <Method>
+      <Title>Open Lock (B)</Title>
+      <Form>OpenLockB</Form>
+      <Description>This command generates an operation code to open the lock using the inputs LOCK ID, USER ID, TOUCH KEY ID, DATE, HOUR, TIME BLOCK and LOCK STATUS.</Description>
+    </Method>
+    <Method>
+      <Title>Open Lock No Touch Key (B)</Title>
+      <Form>OpenLockNoTouchKeyB</Form>
+      <Description>This command generates an operation code to open the lock using the inputs LOCK ID, USER ID, TIME, DATE and TIME BLOCK.</Description>
+    </Method>
+    <Method>
+      <Title>Open Lock Now (1B)</Title>
+      <Form>OpenLockNow1B</Form>
+      <Description>This command generates an operation code to open the lock using the inputs LOCK ID and USER ID.</Description>
+    </Method>
+    <Method>
+      <Title>Close Code (B)</Title>
+      <Form>CloseCodeB</Form>
+      <Description>This command will close an active operation code that matches the input LOCK ID, OPERATOR CODE and OPERATION RESULT.</Description>
+    </Method>
+    <Method>
+      <Title>Close Code Via A Seal (B)</Title>
+      <Form>CloseCodeViaASealB</Form>
+      <Description>This command will close an operation code using the B Seal value.</Description>
+    </Method>
+  </Methods>
+</MethodsConfiguration>

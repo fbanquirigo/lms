@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)\.build</MSBuildCommunityTasksPath>
+    <Configuration>Release</Configuration>
+    <AssembliesDirectory>Assemblies</AssembliesDirectory>
+    <ApiBinDirectory>SaG.API\bin</ApiBinDirectory>
+    <DocumentationFile>$(MSBuildProjectDirectory)\SaG.API\App_Data\SaG.API.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.targets"/>
+  <Import Project="$(MSBuildProjectDirectory)\tests.build"/>
+  
+  <ItemGroup>
+    <ProjectToBuild Include="SaG.API.sln">
+      <Properties>Configuration=$(Configuration);</Properties>
+    </ProjectToBuild>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectToDocument Include="$(MSBuildProjectDirectory)\SaG.API\SaG.API.csproj">
+      <Properties>DocumentationFile=$(DocumentationFile);</Properties>
+    </ProjectToDocument>
+  </ItemGroup>
+
+  <Target Name="GenerateDocumentation">
+    <MSBuild Projects="@(ProjectToDocument)" />
+  </Target>
+  
+  <Target Name="Build">
+    <Message Text="Building SaG.API - Release Mode"></Message>
+    <MSBuild Projects="@(ProjectToBuild)" />
+    <CallTarget Targets="GenerateDocumentation" />
+    <CallTarget Targets="RunTests" />
+    <Exec Command="xcopy.exe /s /Y $(AssembliesDirectory)\*.* $(ApiBinDirectory)" />
+  </Target>
+</Project>

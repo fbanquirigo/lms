@@ -1,0 +1,13 @@
+﻿<div ng-controller="UIController" class="row-header navbar-default navbar-fixed-top nav-bar-lms">
+    <div class="container" ng-controller="operator" >
+        <img src="/content/images/sg_logo.png" />
+        <ul class="nav nav-pills navbar-right nav-header">    
+            <li>
+                <a href="@Url.Action("Index", "Help", new { Area = "HelpPage"})" target="_blank"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;@ResourceString("Help.Link.Text")</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" ng-click="logout(logoutSuccess, logoutSuccess)"><span class="glyphicon glyphicon-log-out"></span>&nbsp;@ResourceString("Logout.Text")</a>
+            </li>  
+        </ul>
+    </div>
+</div>

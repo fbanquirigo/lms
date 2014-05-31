@@ -1,0 +1,17 @@
+﻿                                  <div class="row-header">    
+    <div class="container">
+        <img src="/content/images/sg_logo.png" />   
+        <ul class="nav nav-pills navbar-right nav-header">
+            <li>
+                @Html.ActionLink(ResourceString("Client.Link.Text"), "Index", "Home", new { Area = "APIClient" }, new{})
+            </li> 
+            <li>
+                @Html.ActionLink(ResourceString("Management.Link.Text"), "Index", "Home", new { Area = "Management" }, new{})
+            </li> 
+            <li>
+                @Html.ActionLink(ResourceString("Help.Link.Text"), "Index", "Help", new { Area = "HelpPage" }, new{}) 
+            </li>
+        </ul>   
+    </div>  
+    <hr />   
+</div>

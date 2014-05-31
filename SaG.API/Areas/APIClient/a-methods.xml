@@ -1,0 +1,36 @@
+﻿<?xml version="1.0"?>
+<MethodsConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <MethodListTitle>AVAILABLE A SERIES COMMANDS</MethodListTitle>
+  <Methods>
+    <Method>
+      <Title>Open Lock (A)</Title>
+      <Form>OpenLockA</Form>
+      <Description>This command generates an operation code to open the lock using the inputs ATM ID, USER ID, TOUCH KEY ID, TIME, DATE, TIME BLOCK and LOCK STATUS.</Description>
+    </Method>
+    <Method>
+      <Title>Open Lock No Touch Key (A)</Title>
+      <Form>OpenLockNoTouchKeyA</Form>
+      <Description>This command generates an operation code to open the lock using the inputs ATM ID, USER ID, TIME, DATE and TIME BLOCK.</Description>
+    </Method>
+    <Method>
+      <Title>Open Lock Now (1A)</Title>
+      <Form>OpenLockNow1A</Form>
+      <Description>This command generates an operation code to open the lock using the inputs ATM ID and USER ID.</Description>
+    </Method>
+    <Method>
+      <Title>Open Lock Now (2A)</Title>
+      <Form>OpenLockNow2A</Form>
+      <Description>This command generates an operation code to open the lock using the inputs ATM ID and USER ID (2A).</Description>
+    </Method>
+    <Method>
+      <Title>Close Code (A)</Title>
+      <Form>CloseCodeA</Form>
+      <Description>This command will close an active operation code.</Description>
+    </Method>
+    <Method>
+      <Title>Close Code Via A Seal (A)</Title>
+      <Form>CloseCodeViaASealA</Form>
+      <Description>This command will close an operation code using the A Seal value.</Description>
+    </Method>
+  </Methods>
+</MethodsConfiguration>

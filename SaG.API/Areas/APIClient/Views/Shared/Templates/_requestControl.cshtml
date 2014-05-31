@@ -1,0 +1,21 @@
+﻿<div id="{{id}}">
+    <div class="form-group"> 
+        <label>Url</label> 
+        <div class="input-group field-url-group">
+            <span class="input-group-addon form-text-label"><b>{{method}}</b></span>
+            <input type="text" class="form-control" ng-model="url" disabled>  
+        </div> 
+    </div>
+    <div class="form-group">  
+        <label>Header</label> 
+        <textarea ng-model="headers" class="text-header form-control" readonly></textarea>       
+    </div>
+    <div class="form-group">   
+        <label>Request</label>  
+        <textarea ng-model="request" class="text-request form-control" readonly></textarea>    
+    </div> 
+    <div class="form-group"> 
+        <label>Response</label>    
+        <textarea ng-model="response" class="text-response form-control" readonly></textarea>      
+    </div>
+</div>
